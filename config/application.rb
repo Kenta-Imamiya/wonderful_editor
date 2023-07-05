@@ -34,5 +34,30 @@ module WonderfulEditor
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    config.generators do |g|
+      g.javascripts false
+      g.stylesheets false
+      g.helper false
+      g.template_engine false
+      g.test_framework :rspec,
+                       view_specs: false,
+                       routing_specs: false,
+                       helper_specs: false,
+                       controller_specs: false,
+                       request_specs: true
+    end
+
+    config.api_only = true
+
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins "*"
+        resource "*",
+                 headers: :any,
+                 expose: ["access-token", "expiry", "token-type", "uid", "client"],
+                 methods: [:get, :post, :options, :delete, :put]
+      end
+    end
   end
 end

@@ -1,0 +1,13 @@
+require:
+  - rubocop-rails
+
+inherit_from:
+  - config/rubocop/rubocop.yml
+  - config/rubocop/rails.yml
+  - config/rubocop/rspec.yml
+
+AllCops:
+  TargetRubyVersion: 3.1
+  SuggestExtensions: false
+  EnabledByDefault: false
+  NewCops: enable

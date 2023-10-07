@@ -3,7 +3,7 @@
 ### wonderful editor
 ワンダフルコードの実践課題 Qiita風の記事作成アプリです。
 
-Things you may want to cover:
+
 
 * Ruby version : 3.1.3
 

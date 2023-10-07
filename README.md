@@ -1,24 +1,12 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### wonderful editor
+ワンダフルコードの実践課題 Qiita風の記事作成アプリです。
 
 Things you may want to cover:
 
-* Ruby version
+* Ruby version : 3.1.3
 
-* System dependencies
+* Rails : 6.1.7.1
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Database creation : PostgreSQL

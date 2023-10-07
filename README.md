@@ -1,6 +1,6 @@
 # README
 
-### wonderful editor
+## wonderful editor
 ワンダフルコードの実践課題 Qiita風の記事作成アプリです。
 
 

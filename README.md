@@ -10,3 +10,10 @@
 * Rails : 6.1.7.1
 
 * Database creation : PostgreSQL
+
+## 機能
+* 記事一覧
+* 記事作成
+* 記事の下書き
+* ユーザー設定
+* マイページ

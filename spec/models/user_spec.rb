@@ -1,7 +1,6 @@
-require 'rails_helper'
+require "rails_helper"
 
-RSpec.describe User, type: :model do
-
+RSpec.describe User do
   context "必要な情報が揃っている場合" do
     let(:user) { build(:user) }
 
@@ -33,7 +32,6 @@ RSpec.describe User, type: :model do
       expect(user).not_to be_valid
     end
   end
-
 
   # 以下、自分で検討したコード
 
@@ -99,5 +97,4 @@ RSpec.describe User, type: :model do
   #     expect(user).to be_invalid
   #   end
   # end
-
 end

@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Article, type: :model do
+RSpec.describe Article do
   context "title を指定しているとき" do
     let(:user) { build(:user) }
     let(:article) { build(:article) }
@@ -12,15 +12,14 @@ RSpec.describe Article, type: :model do
 
   context "title を指定していないとき" do
     let(:user) { build(:user) }
-    let(:article) { build(:article, title: nil ) }
+    let(:article) { build(:article, title: nil) }
 
     it "エラーになる" do
-      expect(article).to_not be_valid
+      expect(article).not_to be_valid
     end
   end
 
-
-# 以下、リファクタリング前
+  # 以下、リファクタリング前
 
   # context "title を指定しているとき" do
   #   it "投稿が作られる" do

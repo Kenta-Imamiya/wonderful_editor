@@ -11,16 +11,13 @@ RSpec.describe Comment do
     end
   end
 
-  fcontext "commentに入力がないとき" do
+  context "commentに入力がないとき" do
     let(:user) { build(:user) }
     let(:article) { build(:article) }
     let(:comment) { build(:comment, body: nil) }
 
     it "エラーになる" do
-      expect(comment).to_not be_valid
+      expect(comment).not_to be_valid
     end
   end
-
-
-
 end

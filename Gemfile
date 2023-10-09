@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 git_source(:github) {|repo| "https://github.com/#{repo}.git" }
 
-# ruby "2.7.2"
+# ruby "3.1.3"
 ruby "3.1.3"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
@@ -52,6 +52,7 @@ group :development do
   gem "rack-mini-profiler", "~> 2.0"
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem "annotate"
+  gem "rails-erd"
   gem "spring"
 end
 

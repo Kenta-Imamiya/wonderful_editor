@@ -1,8 +1,7 @@
 FactoryBot.define do
   factory :comment do
-    id { "" }
-    body { "MyText" }
-    user_id { "" }
-    article_id { "" }
+    body { Faker::Lorem.characters(number: 30) }
+    user # userモデルとの関連付け
+    article # articleモデルとの関連付け
   end
 end

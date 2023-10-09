@@ -89,4 +89,11 @@ RSpec.configure do |config|
   #   # test failures related to randomization by passing the same `--seed` value
   #   # as the one that triggered the failure.
   #   Kernel.srand config.seed
+
+  # （推奨）
+  # テストが失敗した際に、最後までテストを走らせる設定
+  # 以下の設定をしておくと、テストが失敗しても全てのテストを実行してくれるので、最後まで結果を確認することができる。
+  # config.define_derived_metadata do |meta|
+  #   meta[:aggregate_failures] = true unless meta.has_key?(:aggregate_failures)
+  # end
 end

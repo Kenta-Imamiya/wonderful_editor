@@ -304,7 +304,7 @@ PLATFORMS
   x86_64-darwin-22
 
 DEPENDENCIES
-  active_model_serializers
+  active_model_serializers (~> 0.10.0)
   annotate
   bootsnap (>= 1.4.4)
   devise_token_auth

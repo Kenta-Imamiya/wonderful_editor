@@ -4,4 +4,8 @@ class Article < ApplicationRecord
   has_many :article_likes, dependent: :destroy
 
   validates :title, presence: true
+
+  def active_model_serializer
+    Api::V1::ArticlePreviewSerializer
+  end
 end

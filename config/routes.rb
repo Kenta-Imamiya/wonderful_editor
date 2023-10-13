@@ -6,6 +6,4 @@ Rails.application.routes.draw do
       resources :articles
     end
   end
-
-#   root "top#index"
 end

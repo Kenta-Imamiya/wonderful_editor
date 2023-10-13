@@ -1,7 +1,7 @@
 require "rails_helper"
 
-RSpec.describe "Api::V1::Articles", type: :request do
-  fdescribe "GET /articles" do
+RSpec.describe "Api::V1::Articles" do
+  describe "GET /articles" do
     subject { get(api_v1_articles_path) }
 
     let!(:article1) { create(:article, updated_at: 1.days.ago) }
@@ -20,7 +20,6 @@ RSpec.describe "Api::V1::Articles", type: :request do
     end
   end
 end
-
 
 # RSpec.describe "Api::V1::Articles", type: :request do
 #   describe "GET /index" do

@@ -10,6 +10,7 @@
 * Database creation : PostgreSQL
 
 ## 機能
+* APIモード
 * 記事一覧
 * 記事作成
 * 記事の下書き

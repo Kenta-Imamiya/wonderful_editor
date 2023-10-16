@@ -9,5 +9,11 @@ module Api::V1
       article = Article.find(params[:id])
       render json: article, serializer: Api::V1::ArticleDetailSerializer
     end
+
+    # def create
+    #   article = Article.create
+    #   article.user_id = 1
+    #   render json: article, serializer: Api::V1::ArticleDetailSerializer
+    # end
   end
 end

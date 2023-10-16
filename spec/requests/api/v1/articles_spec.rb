@@ -41,5 +41,15 @@ RSpec.describe "Api::V1::Articles" do
         expect(res["user"].keys).to eq ["id", "name", "email"]
       end
     end
+
+    context "指定した id の記事が存在しない場合" do
+      let(:article) { create(:article) }
+      let(:article_id) { 10000 }
+
+      it "記事が見つからない" do
+        expect { get(api_v1_article_path(article.id[10000])) }.to raise_error ActiveRecord::RecordNotFound
+        # expect { subject }.to raise_error ActiveRecord::RecordNotFound
+      end
+    end
   end
 end

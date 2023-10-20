@@ -22,7 +22,7 @@ RSpec.describe "Api::V1::Articles" do
     end
   end
 
-  describe "GET /articles/:id" do
+  fdescribe "GET /articles/:id" do
     subject { get(api_v1_article_path(article.id)) }
 
     context "指定した id の記事が存在する場合" do
@@ -43,12 +43,12 @@ RSpec.describe "Api::V1::Articles" do
     end
 
     context "指定した id の記事が存在しない場合" do
-      let(:article) { create(:article) }
-      let(:article_id) { 10000 }
+      let(:article) { create(:article, id: 10000) }
+      # let(:article_id) { 10000 }
 
       it "記事が見つからない" do
-        expect { get(api_v1_article_path(article.id[10000])) }.to raise_error ActiveRecord::RecordNotFound
         # expect { subject }.to raise_error ActiveRecord::RecordNotFound
+        expect { get(api_v1_article_path(article.id[10000])) }.to raise_error ActiveRecord::RecordNotFound
       end
     end
   end

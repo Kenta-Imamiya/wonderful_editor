@@ -10,10 +10,15 @@ module Api::V1
       render json: article, serializer: Api::V1::ArticleDetailSerializer
     end
 
-    # def create
-    #   article = Article.create
-    #   article.user_id = 1
-    #   render json: article, serializer: Api::V1::ArticleDetailSerializer
-    # end
+    def create
+      article = current_user.articles.create!(article_params)
+      render json: article, serializer: Api::V1::ArticleDetailSerializer
+    end
+
+    private
+
+      def article_params
+        params.require(:article).permit(:title, :body)
+      end
   end
 end

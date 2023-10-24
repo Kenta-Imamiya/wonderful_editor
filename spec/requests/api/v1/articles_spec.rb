@@ -22,7 +22,7 @@ RSpec.describe "Api::V1::Articles" do
     end
   end
 
-  fdescribe "GET /articles/:id" do
+  describe "GET /articles/:id" do
     subject { get(api_v1_article_path(article.id)) }
 
     context "指定した id の記事が存在する場合" do
@@ -50,6 +50,24 @@ RSpec.describe "Api::V1::Articles" do
         # expect { subject }.to raise_error ActiveRecord::RecordNotFound
         expect { get(api_v1_article_path(article.id[10000])) }.to raise_error ActiveRecord::RecordNotFound
       end
+    end
+  end
+
+  describe "post /articles" do
+    subject { post(api_v1_articles_path, params:) }
+
+    let(:params) { { article: attributes_for(:article) } }
+    let(:current_user) { create(:user) }
+
+    # stub
+    before { allow_any_instance_of(Api::V1::BaseApiController).to receive(:current_user).and_return(current_user) }
+
+    it "記事のレコードが作成できる" do
+      expect { subject }.to change { Article.where(user_id: current_user.id).count }.by(1)
+      res = response.parsed_body
+      expect(res["title"]).to eq params[:article][:title]
+      expect(res["body"]).to eq params[:article][:body]
+      expect(response).to have_http_status(:ok)
     end
   end
 end

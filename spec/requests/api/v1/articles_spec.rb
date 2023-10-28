@@ -101,10 +101,10 @@ RSpec.describe "Api::V1::Articles" do
   end
 
   describe "DELETE /articles/:id" do
-    subject { delete(api_v1_article_path(article.id), params:) }
+    subject { delete(api_v1_article_path(article_id)) }
 
-    let(:params) { { article: attributes_for(:article) } }
     let(:current_user) { create(:user) }
+    let(:article_id) { article.id }
 
     # stub
     before { allow_any_instance_of(Api::V1::BaseApiController).to receive(:current_user).and_return(current_user) }
@@ -114,15 +114,17 @@ RSpec.describe "Api::V1::Articles" do
 
       it "削除できる" do
         expect { subject }.to change { Article.count }.by(-1)
+        expect(response).to have_http_status(:ok)
       end
     end
 
-    fcontext "自分が所持していない記事のレコードを削除しようとするとき" do
+    context "自分が所持していない記事のレコードを削除しようとするとき" do
       let(:other_user) { create(:user) }
       let!(:article) { create(:article, user: other_user) }
 
       it "削除できない" do
-        expect { subject }.to raise_error(ActiveRecord::RecordNotDestroyed)
+        expect { subject }.to raise_error(ActiveRecord::RecordNotFound)
+        expect { subject }.not_to change(counter.value)
       end
     end
   end

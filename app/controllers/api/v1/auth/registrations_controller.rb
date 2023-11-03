@@ -1,9 +1,12 @@
-module Api::V1
-  class Auth::RegistrationsController < DeviseTokenAuth::RegistrationsController
-    private
+class Api::V1::Auth::RegistrationsController < DeviseTokenAuth::RegistrationsController
 
-      def sign_up_params
-        params.permit(:email, :password, :password_confirmation)
-      end
-  end
+  private
+
+    def sign_up_params
+      params.permit(:name, :email, :password, :password_confirmation)
+    end
+
+    def account_update_params
+      params.permit(:name, :email)
+    end
 end

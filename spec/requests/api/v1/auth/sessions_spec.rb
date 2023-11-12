@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe "Api::V1::Auth::Sessions" do
-  describe "POST /v1/auth/sign_in" do
+  fdescribe "POST /v1/auth/sign_in" do
     subject { post(api_v1_user_session_path, params:) }
 
     context "登録済のユーザー情報を送信したとき" do
@@ -13,7 +13,7 @@ RSpec.describe "Api::V1::Auth::Sessions" do
         header = response.header
         expect(header["access-token"]).to be_present
         expect(header["client"]).to be_present
-        expect(headers["uid"]).to be_present
+        expect(header["uid"]).to be_present
         expect(response).to have_http_status(:ok)
       end
     end
@@ -29,7 +29,7 @@ RSpec.describe "Api::V1::Auth::Sessions" do
         expect(res["errors"]).to include "Invalid login credentials. Please try again."
         expect(header["access-token"]).to be_blank
         expect(header["client"]).to be_blank
-        expect(headers["uid"]).to be_blank
+        expect(header["uid"]).to be_blank
         expect(response).to have_http_status(:unauthorized)
       end
     end
@@ -45,7 +45,7 @@ RSpec.describe "Api::V1::Auth::Sessions" do
         expect(res["errors"]).to include "Invalid login credentials. Please try again."
         expect(header["access-token"]).to be_blank
         expect(header["client"]).to be_blank
-        expect(headers["uid"]).to be_blank
+        expect(header["uid"]).to be_blank
         expect(response).to have_http_status(:unauthorized)
       end
     end

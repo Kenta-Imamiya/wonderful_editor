@@ -2,7 +2,6 @@ require "rails_helper"
 
 RSpec.describe "Api::V1::Auth::Registrations" do
   describe "POST /v1/auth" do
-    # subject { post(api_v1_auth_path, params: params) }
     subject { post(api_v1_user_registration_path, params:) }
 
     context "必要な情報が存在するとき" do

@@ -44,23 +44,20 @@ RSpec.describe "Api::V1::Articles" do
 
     context "指定した id の記事が存在しない場合" do
       let(:article) { create(:article, id: 10000) }
-      # let(:article_id) { 10000 }
 
       it "記事が見つからない" do
-        # expect { subject }.to raise_error ActiveRecord::RecordNotFound
         expect { get(api_v1_article_path(article.id[10000])) }.to raise_error ActiveRecord::RecordNotFound
       end
     end
   end
 
   describe "post /articles" do
-    subject { post(api_v1_articles_path, params:) }
+    subject { post(api_v1_articles_path, params:, headers:) }
 
     let(:params) { { article: attributes_for(:article) } }
     let(:current_user) { create(:user) }
 
-    # stub
-    before { allow_any_instance_of(Api::V1::BaseApiController).to receive(:current_user).and_return(current_user) }
+    let(:headers) { current_user.create_new_auth_token }
 
     it "記事のレコードが作成できる" do
       expect { subject }.to change { Article.where(user_id: current_user.id).count }.by(1)
@@ -72,13 +69,12 @@ RSpec.describe "Api::V1::Articles" do
   end
 
   describe "PUTCH /articles/:id" do
-    subject { patch(api_v1_article_path(article.id), params:) }
+    subject { patch(api_v1_article_path(article.id), params:, headers:) }
 
     let(:params) { { article: attributes_for(:article) } }
     let(:current_user) { create(:user) }
 
-    # stub
-    before { allow_any_instance_of(Api::V1::BaseApiController).to receive(:current_user).and_return(current_user) }
+    let(:headers) { current_user.create_new_auth_token }
 
     context "自分が所持している記事のレコードを更新しようとするとき" do
       let(:article) { create(:article, user: current_user) }
@@ -101,13 +97,12 @@ RSpec.describe "Api::V1::Articles" do
   end
 
   describe "DELETE /articles/:id" do
-    subject { delete(api_v1_article_path(article_id)) }
+    subject { delete(api_v1_article_path(article_id), headers:) }
 
     let(:current_user) { create(:user) }
     let(:article_id) { article.id }
 
-    # stub
-    before { allow_any_instance_of(Api::V1::BaseApiController).to receive(:current_user).and_return(current_user) }
+    let(:headers) { current_user.create_new_auth_token }
 
     context "自分が所持している記事のレコードを削除するとき" do
       let!(:article) { create(:article, user: current_user) }
@@ -124,7 +119,6 @@ RSpec.describe "Api::V1::Articles" do
 
       it "削除できない" do
         expect { subject }.to raise_error(ActiveRecord::RecordNotFound)
-        expect { subject }.not_to change(counter.value)
       end
     end
   end

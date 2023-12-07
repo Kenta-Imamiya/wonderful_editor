@@ -5,6 +5,8 @@ class Article < ApplicationRecord
 
   validates :title, presence: true
 
+  enum status: { published: 0, draft: 1 }
+
   def active_model_serializer
     Api::V1::ArticlePreviewSerializer
   end

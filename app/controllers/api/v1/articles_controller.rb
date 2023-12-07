@@ -14,6 +14,13 @@ module Api::V1
 
     def create
       article = current_user.articles.create!(article_params)
+
+      article.status = if params[:draft].present?
+                         :draft
+                       else
+                         :published
+                       end
+
       render json: article, serializer: Api::V1::ArticleDetailSerializer
     end
 

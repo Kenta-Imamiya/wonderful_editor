@@ -103,7 +103,7 @@ RSpec.describe "Api::V1::Articles" do
     end
   end
 
-  fdescribe "PATCH /articles/:id" do
+  describe "PATCH /articles/:id" do
     subject { patch(api_v1_article_path(article.id), params:, headers:) }
 
     let(:params) { { article: attributes_for(:article, status: :published) } }
@@ -116,7 +116,7 @@ RSpec.describe "Api::V1::Articles" do
 
       it "記事の更新ができる" do
         expect { subject }.to change { article.reload.title }.from(article.title).to(params[:article][:title]) &
-                              change { article.reload.body }.from(article.body).to(params[:article][:body])&
+                              change { article.reload.body }.from(article.body).to(params[:article][:body]) &
                               change { article.reload.status }.from(article.status).to(params[:article][:status].to_s)
         expect(response).to have_http_status(:ok)
       end

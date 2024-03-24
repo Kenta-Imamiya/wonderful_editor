@@ -145,7 +145,7 @@ RSpec.describe "Api::V1::Articles" do
 
       it "削除できる" do
         expect { subject }.to change { Article.count }.by(-1)
-        expect(response).to have_http_status(:ok)
+        expect(response).to have_http_status(:no_content)
       end
     end
 
@@ -154,7 +154,8 @@ RSpec.describe "Api::V1::Articles" do
       let!(:article) { create(:article, user: other_user) }
 
       it "削除できない" do
-        expect { subject }.to raise_error(ActiveRecord::RecordNotFound)
+        expect { subject }.to raise_error(ActiveRecord::RecordNotFound)&
+                              change { Article.count }.by(0)
       end
     end
   end
